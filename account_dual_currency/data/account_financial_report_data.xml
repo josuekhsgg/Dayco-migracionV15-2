@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_account_report_partner_ledger_usd" model="ir.actions.client">
+            <field name="name">Libro mayor de empresa USD</field>
+            <field name="tag">account_report</field>
+            <field name="context" eval="{'model': 'account.partner.ledger_usd'}" />
+        </record>
+        <record id="action_account_report_ar_usd" model="ir.actions.client">
+            <field name="name">Vencida por Cobrar USD</field>
+            <field name="tag">account_report</field>
+            <field name="context" eval="{'model': 'account.aged.receivable_usd'}" />
+        </record>
+        <record id="action_account_report_ap_usd" model="ir.actions.client">
+            <field name="name">Vencida por Pagar USD</field>
+            <field name="tag">account_report</field>
+            <field name="context" eval="{'model': 'account.aged.payable_usd'}" />
+        </record>
+
+        <record id="action_account_report_coa_usd" model="ir.actions.client">
+            <field name="name">Balance general USD</field>
+            <field name="tag">account_report</field>
+            <field name="context" eval="{'model': 'account.coa.report_usd'}" />
+        </record>
+
+<!--
+        <menuitem id="menu_action_dual_partner_ledger" name="Libro mayor de empresa USD" action="action_account_report_partner_ledger_usd" parent="account_reports.account_reports_partners_reports_menu" groups="account.group_account_readonly" sequence="100"/>
+        <menuitem id="menu_action_dual_aged_receivable_usd" name="Vencida por Cobrar USD" action="action_account_report_ar_usd" parent="account_reports.account_reports_partners_reports_menu" sequence="101"/>
+        <menuitem id="menu_action_dual_aged_payable_usd" name="Vencida por Pagar USD" action="action_account_report_ap_usd" parent="account_reports.account_reports_partners_reports_menu" sequence="102"/>
+        <menuitem id="menu_action_account_report_coa_usd" name="Balance general USD" action="action_account_report_coa_usd" parent="account_reports.account_reports_audit_reports_menu" groups="account.group_account_readonly" sequence="11"/>
+-->
+
+    </data>
+</odoo>

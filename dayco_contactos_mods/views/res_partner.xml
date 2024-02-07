@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_form_res_partner_extras" model="ir.ui.view">
+            <field name="name">view.form.res.partner.extras</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <!--<field eval="10" name="priority"/>-->
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position='after'>
+                    <br/>
+                    <h2><field name="apellido_contacto" placeholder="Apellidos" invisible="True"/></h2> <!-- attrs="{'invisible': [('company_type', '=', 'company')]}"-->
+                </xpath>
+
+                <xpath expr="//notebook/page[last()]" position='after'>
+                    <page id="SGC_data" name="SGC_data" string="Información SGC">
+                        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>-->
+                        <!--<div class="desplegable"><span>Mostrar información</span>-->
+                        <div class="desplegable"><span>-</span>
+                            <div class="contenido" style="display: block;">
+                                <div class="col-12">
+                                    <group>
+                                        <!--<button name="SplitNombres" string="Nombre a SGC" type="object" class="btn-primary" />-->
+                                        <field name="direccion_facturacion" readonly="True" force_save="True" invisible="True"/>
+                                        <field name="id_contacto" readonly="True" force_save="True" attrs="{'invisible': [('parent_id', '=', False)]}"/>
+                                        <field name="contacto_date_modified" readonly="True" force_save="True" attrs="{'invisible': [('parent_id', '=', False)]}"/>
+                                        <field name="id_cliente" readonly="True" force_save="True" attrs="{'invisible': [('parent_id', '=', True)]}"/>
+                                        <field name="client_date_modified" readonly="True" force_save="True" attrs="{'invisible': [('parent_id', '=', True)]}"/>
+                                        <field name="create_from_sync" readonly="True" force_save="True"/>
+                                    </group>
+                                    <group attrs="{'invisible': [('company_type_stored', '=', 'person')]}">
+                                        <group>
+                                            <field name="company_type_stored" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="rif_cliente" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="fax_cliente" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="tipo_negocio_cliente" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="categoria_cliente" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="revisar_id_cliente_sgc" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="account_management_id_sgc" readonly="True" force_save="True"/>
+                                        </group>
+                                        <group>
+                                            <field name="tipo_cliente" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="unidad_negocio_cliente" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="tipo_cliente_corporativo" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="cliente_activo" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="cliente_partner_category" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="municipio_cliente" readonly="True" force_save="True" invisible="True"/>
+                                        </group>
+                                    </group>
+                                    <hr/>
+                                    <group attrs="{'invisible': [('company_type_stored', '=', 'company')]}">
+                                        <group>
+                                            <!--<field name="apellido_contacto"/>-->
+                                            <field name="cedula_contacto" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="cargo_contacto" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="ciudad_contacto" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="prioridad_contacto" attrs="{'invisible': [('parent_id', '=', False)]}"/>
+                                            <field name="privilegio_ids" string="Privilegios del contacto" readonly="False" attrs="{'invisible': [('parent_id', '=', False)]}">
+                                                <tree create="true" delete="true" editable="bottom">
+                                                    <field name="name" invisible="False" readonly="False" />
+                                                </tree>
+                                            </field>
+                                        </group>
+                                        <group>
+                                            <field name="habilitado_contacto" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="tipo_contacto" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="contacto_activo" readonly="True" force_save="True" invisible="True"/>
+                                            <field name="ScalabilityLevel" attrs="{'invisible': [('parent_id', '=', False)]}"/>
+                                            <field name="revisar_id_contacto_sgc" readonly="True" force_save="True" invisible="True"/>
+                                            <!--<field name="criterio_ordenamiento_nombre_sgc" readonly="False" force_save="True" invisible="False" groups="dayco_contactos_mods.view_datos_tecnicos_sgc"/>-->
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <field name="check_privilegios_label" widget="html" nolabel="1" readonly="True" force_save="True" invisible="False" attrs="{'invisible': [('company_type_stored', '=', 'company')]}"/>
+                                    </group>
+                                    <!--Se creó el campo "Cliente_partner_category porque el campo original partner_category no es detectado en la vista"-->
+                                    <group>
+                                        <h2>Opciones generales</h2>
+                                    </group>
+                                    <group attrs="{'invisible': [('cliente_partner_category', 'not in', ['1','3'])]}">
+                                        <group>
+                                            <button name="activate_record" type="object" string="Activar en SGC" class="oe_highlight" attrs="{'invisible': ['|',('active', '=', True),('id', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group attrs="{'invisible': [('cliente_partner_category', 'not in', ['1','3'])]}">
+                                        <group>
+                                            <button name="desactivate_record" type="object" string="Desactivar en SGC" class="oe_highlight" attrs="{'invisible': ['|',('active', '=', False),('id', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            $(".desplegable > span").click(function() {      
+                                $(this).next(".contenido").toggle(500);
+                            });
+                        </script>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--Crear los ir_cron para sincronización con SGC-->
+
+        <record id="cron_sgc_sync" model="ir.cron">
+            <field name="name">Sincronizar Clientes SGC (Contactos tipo compañía Odoo) y Contactos SGC (Contactos tipo Individual Odoo)</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">30</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active">False</field>
+            <field name="user_id" ref="base.user_root" />
+            <field eval="False" name="doall"/>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="code">
+
+                model.sync_clientes_contactos_cron()
+
+            </field>
+        </record>
+
+        <record id="cron_sgc_sync_clientes" model="ir.cron">
+            <field name="name">Sincronizar Clientes SGC (Contactos tipo compañía Odoo)</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">60</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active">False</field>
+            <field eval="False" name="doall"/>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="code">
+
+                model.sync_clientes_cron()
+
+            </field>
+        </record>
+
+        <record id="cron_sgc_sync_contactos" model="ir.cron">
+            <field name="name">Sincronizar Contactos SGC (Contactos tipo Individual Odoo)</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">60</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active">False</field>
+            <field eval="False" name="doall"/>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="code">
+
+                model.sync_contactos_cron()
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

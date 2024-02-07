@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_form_res_company_extras" model="ir.ui.view">
+            <field name="name">view.form.res.company.extras</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <!--<field eval="10" name="priority"/>-->
+            <field name="arch" type="xml">
+                
+                <!--
+                <xpath expr="//field[@name='favicon']" position='after'>
+                    <field name="fecha_ultima_sincronizacion" readonly="False" force_save="True"/>
+                </xpath>
+                -->
+
+                <xpath expr="//sheet/notebook/page/group/group[last()]" position="after">
+                    <group name="informacion_sgc" string="Información Interfaz SGC" groups="dayco_contactos_mods.view_datos_operaciones_sgc_odoo">
+                        <field name="fecha_ultima_sincronizacion" readonly="False" force_save="True"/>
+                        <field name="ip_conexion_sgc" readonly="False" force_save="True"/>
+                        <field name="puerto_conexion_sgc" readonly="False" force_save="True"/>
+                        <field name="bd_conexion_sgc" readonly="False" force_save="True"/>
+                        <field name="user_conexion_sgc" readonly="False" force_save="True"/>
+                        <field name="pass_conexion_sgc" password="True" readonly="False" force_save="True"/>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

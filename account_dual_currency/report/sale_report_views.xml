@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sale_enterprise.sale_report_view_dashboard" model="ir.ui.view">
+            <field name="name">sale.report.view.dashboard</field>
+            <field name="model">sale.report</field>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <dashboard sample="1">
+                    <view type="graph" ref="sale.view_order_product_graph"/>
+                    <group>
+                        <group>
+                            <aggregate name="price_subtotal_confirmed_orders" string="Total Sales" field="price_total" help="Total, Tax Included" />
+                            <aggregate name="price_subtotal_all_orders" string="Untaxed Total" field="price_subtotal" />
+                            <aggregate name="order_id_confirmed_orders" field="order_id" string="Orders"/>
+                            <formula name="total" string="Average Order" value="record.price_subtotal_confirmed_orders / record.order_id_confirmed_orders" />
+                            <aggregate name="avg_days_to_confirm" string="Average Days to Confirm" field="avg_days_to_confirm" group_operator="avg" value_label="days" clickable="False"/>
+                            <aggregate name="customers" string="# Customers" field="partner_id" clickable="False"/>
+                            <aggregate name="lines" string="# Lines" field="nbr"/>
+                        </group>
+                        <group col="1">
+                            <widget name="pie_chart" title="Sales Teams" attrs="{'groupby': 'team_id'}"/>
+                        </group>
+                    </group>
+                    <view type="pivot" ref="sale_enterprise.sale_report_view_pivot"/>
+                </dashboard>
+            </field>
+        </record>
+
+    </data>
+</odoo>

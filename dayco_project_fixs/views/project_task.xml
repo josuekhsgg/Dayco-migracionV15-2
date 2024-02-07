@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_project_sub_task_validate_agreements_client_inherit_dayco" model="ir.ui.view">
+            <field name="name">view.project.sub.task.validate.agreements.client.inherit.dayco</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project_task_customization.view_project_sub_task_validate_agreements_client_inherit"/>
+            <!--<field eval="10" name="priority"/>-->
+            <field name="arch" type="xml">
+                
+                <!--
+                <xpath expr="//field[@name='user_id']" position="before">
+                    <field name="manager_id" readonly="1" />
+                </xpath>
+                -->
+
+                <xpath expr="//group[@name='single_payment_group']/field[@name='sent_payment_date']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                    <attribute name="groups">dayco_project_fixs.edit_sent_payment_date,dayco_project_fixs.view_datos_sent_payment_date</attribute>
+                </xpath>
+
+                <xpath expr="//group[@name='payment_percentage_group']/field/tree/field[@name='sent_payment_date']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                    <attribute name="groups">dayco_project_fixs.edit_sent_payment_date,dayco_project_fixs.view_datos_sent_payment_date</attribute>
+                </xpath>
+
+                <xpath expr="//group[@name='part_payments_group']/field/tree/field[@name='sent_payment_date']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                    <attribute name="groups">dayco_project_fixs.edit_sent_payment_date,dayco_project_fixs.view_datos_sent_payment_date</attribute>
+                </xpath>
+
+                <xpath expr="//group[@name='part_payments_group']/field/tree/field[@name='amount']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                    <attribute name="groups">dayco_project_fixs.edit_sent_payment_date,dayco_project_fixs.view_datos_sent_payment_date</attribute>
+                </xpath>
+
+                <xpath expr="//group[@name='payment_percentage_group']/field/tree/field[@name='amount']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                    <attribute name="groups">dayco_project_fixs.edit_sent_payment_date,dayco_project_fixs.view_datos_sent_payment_date</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='prorate_amount']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                    <attribute name="attrs">{}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='valid_agree_fixed_amount_payment']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('parent_id', '=', False)],'readonly': ['|', '|', '|','|','|',('tipo_tarifa', '=', 'Sharehosting'), ('valid_agree_single_payment', '=', True),('valid_agree_payment_percentage', '=', True),('is_upselling_sale_order','=',True),('only_edit_sale_order_check', '=', True),('only_edit_finance_check', '=', True)]}</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='validate_so']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+
+                <!--Se debe establecer de solo lectura el porcentaje de la tarea editable cuando sea erosión/upselling-->
+                <xpath expr="//field[@name='validate_finance']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', ('service_type', '!=', 'validar_acuerdo_cliente'), ('tipo_tarifa', '=', False), ('tipo_tarifa', 'not in', ('Unica', 'Recurrente'))],'readonly':['|',('validate_finance_flag', '=', False),('only_edit_sale_order_check', '=', True)]}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

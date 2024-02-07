@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_registro_sgc_odoo" model="ir.actions.act_window">
+            <field name="name">Ventana principal registros SGC - Odoo</field>
+            <field name="res_model">sgc.odoo.history</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="domain">[('employee_id', '!=', False)]</field>-->
+            <!--<field name="context">{'search_default_current':1, 'search_default_group_by_state': 1}</field>-->
+            <!--<field name="search_view_id" ref="hr_contract_view_search"/>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Registro de operaciones entre Odoo - SGC
+                </p>
+            </field>
+        </record>
+
+        <!--Model's Menú-->
+        <!--Model's Menú-->
+
+        <menuitem
+            id="menu_sgc_odoo_history"
+            name="Operaciones SGC - Odoo"
+            parent="contacts.menu_contacts"
+            sequence="5"
+            action="action_registro_sgc_odoo"
+            groups="dayco_contactos_mods.view_datos_operaciones_sgc_odoo"
+        />
+
+        <!--Model's Menú-->
+        <!--Model's Menú-->
+
+    </data>
+</odoo>

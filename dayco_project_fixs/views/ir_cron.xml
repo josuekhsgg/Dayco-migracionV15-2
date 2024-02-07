@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--Crear los ir_cron para sincronización con SGC-->
+
+        <record id="cron_sgc_sync" model="ir.cron">
+            <field name="name">Chequeo de tareas finalizadas en proyectos.</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active">True</field>
+            <field name="user_id" ref="base.user_root" />
+            <field eval="False" name="doall"/>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="code">
+
+                model.sync_tareas_finalizadas()
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

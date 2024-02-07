@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+
+        <record id="view_form_sgc_odoo_history" model="ir.ui.view">
+            <field name="name">form.sgc.odoo.history</field>
+            <field name="model">sgc.odoo.history</field>
+            <field name="arch" type="xml">
+                <form string="Historico de operaciones SGC - Odoo (form)" create="false" edit="false" delete="0">
+                    <header>
+                        <!--<button name="test_function" string="Test function" type="object" class="btn-primary" />-->
+                        <!--<button name="crear_asignacion_masiva" string="Ejecutar asignación" type="object" class="btn-primary" attrs="{'invisible':[('asignacion_campo','=',False),('asignacion_bono','=',False)]}"/>-->
+                        <!--
+                        <button name="generar_fechas_periodo" string="Generar fechas" type="object" class="btn-primary" attrs="{'invisible':[('state','not in','draft')]}"/>
+                        <button name="cerrar_periodo_actual" string="Cerrar periodo actual" type="object" class="btn-primary" attrs="{'invisible':[('state','not in','process')]}"/>
+                        <button name="habilitar_periodo_anterior" 
+                                string="Habilitar Periodo Anterior" 
+                                type="object" 
+                                class="btn-primary" 
+                                attrs="{'invisible':[('state','not in','process')]}"
+                                groups="lifetek_rrhh_extras.view_datos_nomina_admininstration"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,process,ended"/>
+                        -->
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <!--Por estar fuera d ela etiqueta group no se muestra el label asignado al campo-->
+                            <h1>
+                                <field name="name" placeholder="Nombre del registro" readonly="True" force_save="True"/>
+                            </h1>
+                            <h2>
+                                <field name="category" readonly="True" force_save="True" widget="html"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="fecha_registro" readonly="True" force_save="True"/>
+                                <field name="tipo_error" readonly="True" force_save="True"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <group>
+                                <field name="registro_operacion" widget="html" readonly="True" force_save="True"/>
+                                <field name="registro_tecnico" readonly="True" force_save="True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tree_sgc_odoo_history" model="ir.ui.view">
+            <field name="name">tree.sgc.odoo.history</field>
+            <field name="model">sgc.odoo.history</field>
+            <field name="arch" type="xml">
+                <tree string="Historico de operaciones SGC - Odoo (tree)" create="false" edit="false" delete="0">
+                    <field name="name"/>
+                    <field name="tipo_error" invisible="False"/>
+                    <field name="fecha_registro" invisible="False"/>
+                    <field name="registro_operacion" invisible="True"/>
+                    <field name="registro_tecnico" invisible="True"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

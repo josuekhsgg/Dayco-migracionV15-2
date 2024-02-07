@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="search_template_currency_dif_choser">
+            <style>
+                .o_search_options {
+                    margin: auto 0;
+                    display: block;
+                }
+            </style>
+            <div id="currency_dif_choice_option" class="btn-group o_dropdown o_account_reports_filter_currency_dif">
+                <button type="button" class="o_dropdown_toggler_btn btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                    <span class="fa fa-money"/>
+                    Moneda:
+                    <t t-if="options.get('currency_dif') != None">
+                        <span style="color: red;"><t t-esc="options['currency_dif']"/></span>
+                    </t>
+                    <t t-else="">
+                        <span style="color: red;">Bs</span>
+                    </t>
+
+
+                </button>
+                <div class="dropdown-menu o_filter_menu" role="menu">
+                    <a role="menuitem" class="dropdown-item js_account_reports_one_choice_filter" data-filter="currency_dif" data-id="Bs">Bs</a>
+                    <a role="menuitem" class="dropdown-item js_account_reports_one_choice_filter" data-id="USD" data-filter="currency_dif">
+                        USD
+                    </a>
+                </div>
+            </div>
+        </template>
+
+        <template id="search_template_generic_currency_dif" inherit_id="account_reports.search_template" primary="True">
+
+            <xpath expr="//div[@id='extra_options_dropdown']" position="after">
+                <t t-call="account_dual_currency.search_template_currency_dif_choser"/>
+            </xpath>
+        </template>
+
+
+</odoo>

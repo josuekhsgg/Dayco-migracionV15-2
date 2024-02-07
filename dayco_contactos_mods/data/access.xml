@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--Establezca los permisos para aplicarlos a elementos en las vistas con el parámetro groups-->
+
+        <record id="view_datos_operaciones_sgc_odoo" model="res.groups">
+            <field name="name">Acceso a registro de operaciones SGC - Odoo</field>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <!--18/01/2022 En estudio por error al intentar realizar cambios sobre corrector de nombres y apellidos.-->
+        <!--
+        <record id="view_datos_tecnicos_sgc" model="res.groups">
+            <field name="name">Acceso datos técnicos SGC - Odoo</field>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+        -->
+
+    </data>
+</odoo>
